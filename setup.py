@@ -1,5 +1,5 @@
 import os
-
+import re
 from setuptools import find_packages, setup
 
 from nlaugmenter import __version__
@@ -35,7 +35,7 @@ def all_folders(search: str, transformation_type: str) -> list:
 
 
 def read(fname):
-    with open(os.path.join(os.path.dirname(__file__), fname)) as f:
+    with open(os.path.join(os.path.dirname(__file__), fname), encoding="utf-8") as f:
         data = f.read()
     return data
 
@@ -66,17 +66,17 @@ def get_default_requirements() -> list:
     # (1) read main requirements.txt
     mandatory_requirements = read("requirements.txt")
     # (2) read requirements for light transformations
-    mandatory_requirements += recursive_requirements(
+    secondary_requirements = recursive_requirements(
         "transformations", "light"
     )
     # (3) read requirements for light filters
-    mandatory_requirements += recursive_requirements(
+    secondary_requirements += recursive_requirements(
         "filters", "light"
     )  # light filters
-    return filter_requirements(mandatory_requirements)
+    return filter_requirements(mandatory_requirements, secondary_requirements)
 
 
-def filter_requirements(requirements: str) -> list:
+def filter_requirements(mandatory_requirements: str, secondary_requirements: str = None) -> list:
     """Filter the requirements, exclude comments, empty strings
 
     Parameters:
@@ -89,12 +89,38 @@ def filter_requirements(requirements: str) -> list:
     list
         list of filtered requirements
     """
-    requirement_list = requirements.split("\n")
+    requirement_dict = dict()
+
+    requirement_list = mandatory_requirements.split("\n")
     # Remove all comments and empty string.
-    requirement_list = set(
-        filter(lambda req: "#" not in req and req != "", requirement_list)
-    )
-    return list(requirement_list)
+    requirement_list = list(set(filter(lambda req: "#" not in req and req != "", requirement_list)))
+    for requirement in requirement_list:
+        pattern = r'[<>]=?|=='
+        name, *version = re.split(pattern, requirement)
+        if not requirement_dict.get(name):
+            requirement_dict.setdefault(name, version)
+
+    if secondary_requirements:
+        requirement_list = secondary_requirements.split("\n")
+        # Remove all comments and empty string.
+        requirement_list = list(set(filter(lambda req: "#" not in req and req != "", requirement_list)))
+        for requirement in requirement_list:
+            pattern = r'[<>]=?|=='
+            name, *version = re.split(pattern, requirement)
+            if not requirement_dict.get(name):
+                requirement_dict.setdefault(name, version)
+
+    requirement_list = []
+    for keys in list(requirement_dict.keys()):
+        version = requirement_dict.get(keys)
+        if len(version) >= 1:
+            requirement_list.append(f"{keys}=={version[0]}")
+        else:
+            requirement_list.append(keys)
+    return requirement_list
+
+
+
 
 
 def get_extra_requirements() -> dict:
