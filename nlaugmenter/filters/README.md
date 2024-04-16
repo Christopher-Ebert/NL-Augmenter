@@ -26,7 +26,7 @@ Your fork will have its own location, which we will call `PATH_TO_YOUR_FORK`.
 Next, [clone the forked repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) and create a branch for your filter, which here we will call **my_awesome_filter**:
 ```bash
 git clone $PATH_TO_YOUR_FORK
-cd NL-Augmenter
+cd NLAugmenter
 git checkout -b my_awesome_filter
 ```
 We will base our filter on an existing example.

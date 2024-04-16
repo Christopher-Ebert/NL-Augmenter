@@ -172,7 +172,7 @@ def get_extra_requirements() -> dict:
 setup(
     name=NAME,
     version=__version__,
-    description="NL-Augmenter: A Framework for Task-Sensitive Natural Language Augmentation",
+    description="NLAugmenter: A Framework for Task-Sensitive Natural Language Augmentation",
     author_email="nl-augmenter@googlegroups.com",
 
     long_description=read("README.md"),
