@@ -39,7 +39,7 @@ If you need inspiration for what transformations to implement, check out https:/
 ```bash
 # When creating a new transformation, replace this with your forked repository (see below)
 git clone https://github.com/GEM-benchmark/NL-Augmenter.git
-cd NL-Augmenter
+cd NLAugmenter
 python setup.py sdist
 pip install -e .
 pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0.tar.gz
@@ -57,7 +57,7 @@ Your fork will have its own location, which we will call `PATH_TO_YOUR_FORK`.
 Next, [clone the forked repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) and create a branch for your transformation, which here we will call **my_awesome_transformation**:
 ```bash
 git clone $PATH_TO_YOUR_FORK
-cd NL-Augmenter
+cd NLAugmenter
 git checkout -b my_awesome_transformation
 ```
 We will base our transformation on an existing example.

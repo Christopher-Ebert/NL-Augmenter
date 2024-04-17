@@ -2,7 +2,7 @@
 # Filter Mapping Analysis
 
 This script analyses the filters in the
-NL-Augmenter notebook and maps each filter into specific groups using the supplied metadata.
+NLAugmenter notebook and maps each filter into specific groups using the supplied metadata.
 @author = Saad Mahamood
 """
 import inspect

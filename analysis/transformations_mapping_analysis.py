@@ -2,7 +2,7 @@
 # Transformations Mapping Analysis
 
 This script analyses the transformations in the
-NL-Augmenter notebook and maps each transformation into specific groups using the supplied metadata.
+NLAugmenter notebook and maps each transformation into specific groups using the supplied metadata.
 @author = Saad Mahamood
 """
 import inspect
