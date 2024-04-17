@@ -1,36 +1,41 @@
 # git+https://github.com/decypher-ai/checklist@e6ffe5e148585d0bd377a590d3d46aa58978d83c
+
+allennlp @ file://localhost/F:/github_desktop/NL-Augmenter/dist/allennlp-2.10.1-py3-none-any.whl
+
+
 spacy
 numpy
+nltk>=3.6.2
 
 # for back_translation
 torch
-torchtext==0.17.0
+torchtext
 # for ReplaceNumericalValues
-num2words==0.5.10
-word2number==1.1
+num2words
+word2number
 
 # for test cases and coverage
-pytest==6.2.4
-pytest-cov==2.12.1
+pytest
+pytest-cov
 
 # for evaluation
-datasets==1.7.0
-transformers==4.6.1
-sacrebleu==1.5.1
-seqeval==1.2.2
+datasets
+transformers
+sacrebleu
+seqeval
 
 # for utility
 tqdm
 
 # Google colab 2nd example
-sentencepiece==0.1.95
+sentencepiece
 
 # for code format
-black==21.5b2
-pre-commit==2.13.0
+black
+pre-commit
 
 
-flake8==3.9.2
-isort==5.9.1
+flake8
+isort
 
-setuptools<59.7.0
+setuptools

@@ -114,9 +114,13 @@ def filter_requirements(mandatory_requirements: str, secondary_requirements: str
     for keys in list(requirement_dict.keys()):
         version = requirement_dict.get(keys)
         if len(version) >= 1:
-            requirement_list.append(f"{keys}=={version[0]}")
+            requirement_list.append(f"{keys}>={version[0]}")
         else:
             requirement_list.append(keys)
+    if 'allennlp-models==2.5.0' in requirement_list:
+        requirement_list.remove('allennlp-models==2.5.0')
+    if 'allennlp==2.5.0' in requirement_list:
+        requirement_list.remove('allennlp==2.5.0')
     return requirement_list
 
 
